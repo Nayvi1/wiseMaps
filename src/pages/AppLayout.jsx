@@ -1,9 +1,17 @@
+// import Map from "../components/Map";
+// import Sidebar from "../components/Sidebar";
+// import User from "../components/User";
 
+import styles from "./AppLayout.module.css";
 
-function PageLayout() {
+function AppLayout() {
   return (
-    <div>PageLayout</div>
-  )
+    <div className={styles.app}>
+      {/* <Sidebar />
+      <Map />
+      <User /> */}
+    </div>
+  );
 }
 
-export default PageLayout
+export default AppLayout;
