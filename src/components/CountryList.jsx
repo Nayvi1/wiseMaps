@@ -3,7 +3,9 @@ import CountryItem from "./CountryItem";
 import styles from "./CountryList.module.css";
 import Spinner from "./Spinner";
 import Message from "./Message";
-function CountryList({ cities, isLoading }) {
+import { useCity } from "../contexts/useCity";
+function CountryList() {
+  const { cities, isLoading } = useCity();
   if (isLoading) return <Spinner />;
   if (!cities.length) return <Message message={"nothing to see here..."} />;
 

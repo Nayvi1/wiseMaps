@@ -3,7 +3,11 @@ import CityItem from "./CityItem";
 import styles from "./CityList.module.css";
 import Spinner from "./Spinner";
 import Message from "./Message"
-function CityList({ cities, isLoading }) {
+import { useCity } from "../contexts/useCity";
+function CityList() {
+
+  const { cities, isLoading } = useCity()
+
   if (isLoading) return <Spinner />;
   if(!cities.length) return <Message message={"nothing to see here..."}/>
 
