@@ -11,6 +11,7 @@ import Spinner from "./Spinner";
 import styles from "./Form.module.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { useCity } from "../contexts/useCity";
+import { useNavigate } from "react-router";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -31,6 +32,7 @@ function Form() {
   const [geoError, setGeoError] = useState();
 
   const { postData, isLoading } = useCity();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchReverseGPS() {
@@ -47,7 +49,7 @@ function Form() {
             "that doesn't seem to be an actual country, click somewhere else"
           );
         setCityName(data.city || data.locality || "");
-        setcountry(data.country || "");
+        setcountry(data.countryName || "");
         setEmoji(convertToEmoji(data.countryCode));
       } catch (error) {
         setGeoError(error.message);
@@ -75,7 +77,7 @@ function Form() {
       },
       // id: Math.floor(Math.random() * 1000000)
     };
-    postData(cityDetail);
+    postData(cityDetail).then(() => navigate("/app/cities"));
   }
 
   if (isLoadingCityData) return <Spinner />;

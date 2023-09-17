@@ -41,6 +41,20 @@ function CitiesProvider({ children }) {
       setIsLoading(false);
     }
   }
+  async function handleDelete(id) {
+    try {
+      setIsLoading(true);
+      const res = await fetch(`http://localhost:6789/cities/${id}`, {
+        method: "DELETE",
+      });
+      JSON.stringify(res);
+      setCities((city) => city.filter((el) => el.id !== id));
+    } catch (error) {
+      console.error("oops");
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
     <citiesContext.Provider
@@ -51,6 +65,7 @@ function CitiesProvider({ children }) {
         setCurrentCity,
         currentCity,
         postData,
+        handleDelete,
       }}
     >
       {children}
