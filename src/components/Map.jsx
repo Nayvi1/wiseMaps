@@ -21,14 +21,13 @@ function Map() {
   }, [lat, lng]);
 
   const { cities } = useCity();
-  console.log(cities);
 
   return (
     <div className={styles.mapContainer}>
       <MapContainer
         center={position}
         zoom={13}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
         className={styles.map}
       >
         <TileLayer

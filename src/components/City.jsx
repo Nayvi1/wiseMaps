@@ -19,11 +19,12 @@ function City() {
   // console.log(id);
   useEffect(() => {
     async function fetchCity() {
+      if (+id === currentCity.id) return;
       try {
         setIsLoading(true);
         const res = await fetch(`http://localhost:6789/cities/${id}`);
         const currentCity = await res.json();
-        console.log(currentCity);
+
         setCurrentCity(currentCity);
       } catch (err) {
         console.error(err);
